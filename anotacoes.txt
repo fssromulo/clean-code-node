@@ -1,0 +1,2 @@
+- Convencional commits: Padrões de mensagens para commits no git;
+- http://node.green => Verificar quais features do JS estão disponíveis na versão X do node;
