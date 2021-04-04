@@ -3,5 +3,4 @@
 - http://standardjs.com/rules.html => Padrões para escrita de código JS
 - Husky: Permite que criar hooks para rodar antes dos commits, como por exemplo rodar o lint nos arquivos antes do commit para garantir que não sejam comitados arquivos fora do padrão;
 - Usar o Husky em conjunto com o lint-staged. Que vai validar apenas os arquivos do commit atual;
-
-
+- Clean Architecture
