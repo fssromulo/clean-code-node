@@ -1,4 +1,4 @@
 function teste(): string {
-  return "";
+  return 1;
 }
 teste();
