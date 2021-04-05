@@ -22,9 +22,9 @@ describe("SignUp Controller", () => {
     const httpRequest = {
       body: {
         name: "any_name",
-        email: "email@mail.com",
-        passwordConfirmation: "any_password",
         password: "any_password",
+        passwordConfirmation: "any_password",
+        email: "email@mail.com",
       },
     };
     const httpResponse = sut.handle(httpRequest);
