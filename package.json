@@ -10,14 +10,14 @@
   },
   "list-staged": {
     "*.ts": [
-      "eslint 'src/*' --fix",
-      "yarn test:staged",
+      "eslint --fix",
+      "yarn test-staged",
       "git add"
     ]
   },
   "scripts": {
     "test": "jest --passWithNoTests --watch",
-    "test:staged": "jest --passWithNoTests --bail --findRelatedTests"
+    "test-staged": "jest --passWithNoTests --bail --findRelatedTests"
   },
   "keywords": [],
   "author": "",
