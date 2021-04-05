@@ -5,15 +5,8 @@
   "main": "index.js",
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "echo 'testeeee'"
     }
-  },
-  "lint-staged": {
-    "*.ts": [
-      "eslint 'src/**' --fix",
-      "yarn test-staged",
-      "git add"
-    ]
   },
   "scripts": {
     "test": "jest --passWithNoTests --watch",
