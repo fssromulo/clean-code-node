@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   roots: ["<rootDir>/src"],
   // Automatically clear mock calls and instances between every test
   clearMocks: true,
