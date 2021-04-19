@@ -1,10 +1,24 @@
 import SignUpController from "./signup"
 import { MissingParamError, InvalidParamError, ServerError } from "../errors";
 import { EmailValidator } from "../protocols";
+import { AddAccount, AddAccountModel } from "../../domain/use-cases/add-account"
+import { AccountModel } from "../../domain/models/account";
 
-interface SutTypes {
-    sut: SignUpController,
-    emailValidatorStub: EmailValidator
+
+const makeAddAccount = (): AddAccount => {
+    // Stub = Dublê de teste
+    class AddAccountStub implements AddAccount {
+        add(account: AddAccountModel): AccountModel {
+            const fakeAccount = {
+                id: 'valid_id',
+                name: "name",
+                email: "valid_email@mail.com",
+                password: "password_valid"
+            }
+            return fakeAccount;
+        }
+    }
+    return new AddAccountStub();
 }
 
 const makeEmailValidator = (): EmailValidator => {
@@ -17,12 +31,22 @@ const makeEmailValidator = (): EmailValidator => {
     return new EmailValidatorStub();
 }
 
+interface SutTypes {
+    sut: SignUpController,
+    emailValidatorStub: EmailValidator,
+    addAccountStub: AddAccount
+}
+
 const makeSut = (): SutTypes => {
+    // Dependencias
     const emailValidatorStub = makeEmailValidator();
-    const sut = new SignUpController(emailValidatorStub);
+    const addAccountStub = makeAddAccount();
+
+    const sut = new SignUpController(emailValidatorStub, addAccountStub);
     return {
         sut,
-        emailValidatorStub
+        emailValidatorStub,
+        addAccountStub
     }
 }
 
@@ -126,7 +150,7 @@ describe("SignUp Controller", () => {
         expect(httpResponse.body).toEqual(new InvalidParamError("email"))
     })
 
-    test("Should call EmailValidator with correct << email >> ", () => {
+    test("Should call EmailValidator with correct << email >>", () => {
         // sut significa (S)istem (U)nder (T)est
         const { sut, emailValidatorStub } = makeSut();
 
@@ -143,6 +167,27 @@ describe("SignUp Controller", () => {
         sut.handle(httpRequest);
         expect(isValidSpy).toHaveBeenCalledWith(httpRequest.body.email);
     })
+
+    // test("Should call AddAccount with correct value", () => {
+    //     // sut significa (S)istem (U)nder (T)est
+    //     const { sut, addAccountStub } = makeSut();
+    //     const addSpy = jest.spyOn(addAccountStub, 'add');
+
+    //     const httpRequest = {
+    //         body: {
+    //             name: "any_name",
+    //             email: "any_any_email@mail.com",
+    //             password: "any_password",
+    //             passwordConfirmation: "any_password"
+    //         }
+    //     }
+    //     sut.handle(httpRequest);
+    //     expect(addSpy).toHaveBeenCalledWith({
+    //         name: "any_name",
+    //         email: "any_any_email@mail.com",
+    //         password: "any_password"
+    //     });
+    // })
 
     test("Should return 500 if emailValidator throws", () => {
         // Stub = Dublê de teste
