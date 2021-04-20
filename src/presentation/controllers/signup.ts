@@ -32,9 +32,7 @@ export default class SignUpController implements Controller {
             }
             
             this.addAccount.add({
-                name,
-                email,
-                password
+                name, email, password
             });
 
         } catch (error) {
