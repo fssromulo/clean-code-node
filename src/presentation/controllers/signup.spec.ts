@@ -168,26 +168,26 @@ describe("SignUp Controller", () => {
         expect(isValidSpy).toHaveBeenCalledWith(httpRequest.body.email);
     })
 
-    // test("Should call AddAccount with correct value", () => {
-    //     // sut significa (S)istem (U)nder (T)est
-    //     const { sut, addAccountStub } = makeSut();
-    //     const addSpy = jest.spyOn(addAccountStub, 'add');
+    test("Should call AddAccount with correct value", () => {
+        // sut significa (S)istem (U)nder (T)est
+        const { sut, addAccountStub } = makeSut();
+        const addSpy = jest.spyOn(addAccountStub, 'add');
 
-    //     const httpRequest = {
-    //         body: {
-    //             name: "any_name",
-    //             email: "any_any_email@mail.com",
-    //             password: "any_password",
-    //             passwordConfirmation: "any_password"
-    //         }
-    //     }
-    //     sut.handle(httpRequest);
-    //     expect(addSpy).toHaveBeenCalledWith({
-    //         name: "any_name",
-    //         email: "any_any_email@mail.com",
-    //         password: "any_password"
-    //     });
-    // })
+        const httpRequest = {
+            body: {
+                name: "any_name",
+                email: "any_any_email@mail.com",
+                password: "any_password",
+                passwordConfirmation: "any_password"
+            }
+        }
+        sut.handle(httpRequest);
+        expect(addSpy).toHaveBeenCalledWith({
+            name: "any_name",
+            email: "any_any_email@mail.com",
+            password: "any_password"
+        });
+    })
 
     test("Should return 500 if emailValidator throws", () => {
         // Stub = Dublê de teste
