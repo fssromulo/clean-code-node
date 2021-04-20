@@ -6,3 +6,10 @@
     --> npx husky add .husky/pre-commit "yarn test-staged"
 - Usar o Husky em conjunto com o lint-staged. Que vai validar apenas os arquivos do commit atual;
 - Clean Architecture
+
+## Jest ## 
+- O Jest reconhece por padrão os arquivos <<[...].test.ts>> e <<[...].spec.ts>> com arquivos de testes.
+    --> O padrão adotado nesse treinamento foi: arquivos .spec.ts são arquivos de testes unitários;
+    --> O padrão adotado nesse treinamento foi: arquivos .test.ts são arquivos de testes de integração;
+
+- Podemos alterar as configurações do jest de acordo com nossa necessidade. Passando a flag -c no script do package.json;
